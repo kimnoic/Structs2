@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+
+	<package name="namespace" extends="struts-default">
+	
+		<!-- 
+			findAuthor: 根据输入的name 查询作者的所有书籍
+		-->
+		<action name="findauthor" class="com.poore.findAuthor">
+			<result name="success">
+				find-author-result.jsp
+			</result>
+			<result name="fail">
+				index.jsp
+			</result>
+		</action>
+		
+		<!-- 
+			findisbn 根据获取到的isbn查询唯一的书籍并显示书籍及其作者信息
+		-->
+		<action name="findisbn" class="com.poore.findBook">
+			<result name="success">
+				bookinfo.jsp
+			</result>
+			<result name="fail">
+				not-found.jsp
+			</result>
+		</action>
+	
+		<!-- 
+			delisbn 删除对应isbn的书籍
+		-->
+		<action name="delisbn" class="com.poore.DelBook">
+			<result name="success">
+				deleted.jsp
+			</result>
+			<result name="fail">
+				deleted-fail.jsp
+			</result>
+		</action>
+		
+		<!-- 
+			列出当前数据库所有的书籍信息
+		-->
+		<action name="listbook" class="com.poore.ListBook">
+			<result name="success">
+				listbook.jsp
+			</result>
+			<result name="fail">
+				index.jsp
+			</result>
+		</action>
+
+
+		<!-- 
+			增加图书入口
+		-->
+		<action name="add">
+			<result>
+				choose-author.jsp
+			</result>
+		</action>
+		
+		<!-- 
+			给对应的作者增加图书
+		-->
+		<action name="searchAddAuthorID" class="com.poore.saAuthorID">
+			<result name="found">
+				showauthor.jsp
+			</result>
+			<result name="notfound">
+				failed.jsp
+			</result>
+		</action>
+		
+		<!-- 
+			跳转到给制定作者增加图书的界面
+		-->
+		<action name="toaddbook" class="com.poore.toaddBook">
+			<result>
+				addbook.jsp
+			</result>
+		</action>
+		
+		<!-- 
+			根据输入的信息增加书籍
+		-->
+		<action name="addbook" class="com.poore.addBook">
+			<result name="success">
+				success.jsp
+			</result>
+			<result name="fail">
+				failed.jsp
+			</result>
+		</action>
+		
+	</package>
+</struts>
